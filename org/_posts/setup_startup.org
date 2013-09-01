@@ -1,0 +1,21 @@
+* create e2c instance
+* install git
+#+BEGIN_EXAMPLE
+sudo apt-get install -y git-core
+#+END_EXAMPLE
+* clone and run setup.sh
+#+BEGIN_EXAMPLE
+git clone https://github.com/startup-class/setup.git
+./setup/setup.sh
+#+END_EXAMPLE
+** logout and log in
+* keys
+ssh-keygen -t rsa -C "pyrios@gmail.com"
+* setup heroku key
+#+BEGIN_EXAMPLE
+heroku login
+heroku key:add
+#+END_EXAMPLE
+* setup github key
+** go to https://github.com/settings/ssh
+** Add SSH key and follow instructions
