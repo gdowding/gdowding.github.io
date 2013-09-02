@@ -28,3 +28,4 @@ heroku key:add
 * emacs mode to automatically create closing tabs for html
 * automaticly move to inner part of html
 * something to check my css for errors
+* add configuring git user and email so I don't get nagged
