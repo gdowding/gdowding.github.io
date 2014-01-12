@@ -21,7 +21,6 @@
   :END:
 
 * TODO Blogging on Git using Org mode
-
 ** install emacs
 ** git clone o-blog
 ** create a blog
@@ -40,6 +39,9 @@
     mode or maybe solved with a make file.
 *** Not that obvious how to have current blogs show up in index
 
+*** some errors not reported
+    for example, when I had an error in a template, there was no error when
+    publishing, but it showed up on the web page as an error.
 ** customization
 *** creating a main page with links to recent articles
 + modified the blog_static.html template to include a section that creats a list of the most recent (last 5) posts
@@ -93,14 +95,10 @@ open source) software. Currently the non-open source software that I might be
 using are Renoise, maybe Bitwig. But I don't currently own a Bitwig license,
 so maybe not.
 
-
 * TODO Setting up github blogging
-
-Currently page is not rendering. I added front matter to see if that triggers jekyll processing.
-
-Need to understand how jekyll works.
-
-Need to install jekyll locally,
+** switched to o-blog
+** after some basic configuraiton, it just worked
+   generate the pages using o-blog and git push
 
 * Snippets
 
