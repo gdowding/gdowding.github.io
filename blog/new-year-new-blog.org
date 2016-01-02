@@ -10,8 +10,6 @@
 #+DESCRIPTION: Getting started on blogging for the New Year with org-page
 * Why blog with emacs org?
 
-Foo
-
 I do most of my work in emacs and prefer to do any writing in
 org-mode. It fits my way of working with source and building a
 product. I'm already taking lots of notes in emacs org-mode. I am
@@ -55,3 +53,13 @@ A little weird
 (setq op/site-sub-title "")
 (setq op/theme 'phaer)
 #+END_EXAMPLE
+
+* Usage
+
+Need to add and commit a file before it is rendered.
+
+** Creating a new blog post
+   op/new-post
+
+   This will walk through the steps of creating a new file and putting
+   it in the correct place and adding a header.
