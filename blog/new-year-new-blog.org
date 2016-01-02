@@ -1,4 +1,16 @@
+#+TITLE:       New Year New Blog
+#+AUTHOR:      George Dowding
+#+EMAIL:       gdowding@sidgel.local
+#+DATE:        2016-01-02 Sat
+#+URI:         /blog/%y/%m/%d/new-year-new-blog
+#+KEYWORDS:    emacs,org,org-page
+#+TAGS:        emacs,org,org-blog
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Getting started on blogging for the New Year with org-page
 * Why blog with emacs org?
+
+Foo
 
 I do most of my work in emacs and prefer to do any writing in
 org-mode. It fits my way of working with source and building a
