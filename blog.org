@@ -4,10 +4,11 @@
 #+STARTUP: logdone
 
 #+URL: http://gdowding.github.io
-#-TEMPLATE_DIR: templates
+#-TODO fix this a better way
+#+TEMPLATE_DIR: /Users/gdowding/git/o-blog/templates
 #+PUBLISH_DIR: .
 #+FILENAME_SANITIZER: ob-sanitize-string
-#+POST_SORTER: ob-sort-posts-by-title
+~#+POST_SORTER: ob-sort-posts-by-title
 
 #+POST_BUILD_SHELL: cmd 1
 #+POST_BUILD_SHELL: cmd 2
