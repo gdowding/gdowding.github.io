@@ -8,58 +8,155 @@
 #+LANGUAGE:    en
 #+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
 #+DESCRIPTION: Getting started on blogging for the New Year with org-page
-* Why blog with emacs org?
+* Why blog with emacs, org and git?
 
-I do most of my work in emacs and prefer to do any writing in
-org-mode. It fits my way of working with source and building a
-product. I'm already taking lots of notes in emacs org-mode. I am
-hopeful (new year and all) that I can convert these to actual blogs
-and articles. Finally, since it is logargely based on elisp, it can
-all be customized. In practice, I haven't spent much time doing any
-serious elisp customization. Again, I'm hopefull that I can spend some
-time automating common programming and writing tasks.
+I mostly work with source code in emacs and git. When I take notes I
+use org-mode. The times I've tried to blog in the past involved a lot
+of overhead and context switching that overhead was one of the reasons
+that prevented me from doing any blogging. There were other reasons,
+like lack of ideas or fear of sharing lame posts, but it is a new
+year, so I'm going to give it another try. 
 
-Also leverages git.
+* Choices
 
-* About org-page
+There are several choices listed
+here. http://orgmode.org/worg/org-blog-wiki.html. I am was looking for
+something simple to set up and start using that I could host on
+http://gdowding.github.io. Org-mode has a build in project feature
+that allows creating projects that can be converted to HTML
+pages. I've tried that in the past and was never happy with the output
+and didn't have time to attempt to customize it to what I wanted.
+
+Based on the descriptions, I decided to give [[https://github.com/kelvinh/org-page][org-page]] a try. It looked
+like the simplest approach and the author's site looked, more or less,
+like what I wanted. As I started working with it, I found it was using
+Git and Emacs in a way that I could easily leverage for creating blog
+posts.
+
+A couple of other options that looked interesting are
+http://plugins.getnikola.com/#orgmode and
+https://github.com/novoid/lazyblorg. Nikola looks like it has many
+more features that org-page. It is a static site generator with an
+org-mode plugin. I may have a use for it in the future if I am making
+a full web site. My main issues is that it looks like a more intensive
+set up and I would have to use the CLI to create blog posts and
+build. Lazyblog is interesting in that it attempts to make the effort
+of blogging minimal. Just tag entries with with :blog: and they will
+be converted to blog posts. It look like it is less mature than
+org-page and I decided that I do want to have some level of process to
+separate random notes from blog posts.
+
+I might give one of the other approaches a try in the future, but for
+now here is how I'm setting up and using org-page.
 
 * Install org-page
-I use a combination of git and cask to manage emacs packages. I
-usually use Cask to do the initial install which takes care of all of
-the dependencies then clone the repository in case I need to read or
-modify the code.
 
+I [[https://github.com/cask/cask][cask]] to manage emacs packages when they are available. Otherwise, I
+clone the repository and install manually. The [[https://github.com/kelvinh/org-page][org-page]] github
+repository also has instructions on using melpa or manual
+installation. 
+
+In ~/.emacs.d/Cask
 #+BEGIN_EXAMPLE
 (depends-on "org-page")
 #+END_EXAMPLE
 
-I already had a github
+Then run cask from the CLI. This will install org-page and all of its
+dependencies.
+#+BEGIN_EXAMPLE
+cd ~/.emacs.d
+cask
+#+END_EXAMPLE
+
+Finally in ~/.emacs.d/init.el
+#+BEGIN_EXAMPLE
+(require 'org-page)
+#+END_EXAMPLE
 
 * Initial setup
 
-** Need source and master
+I already had a site set up on github for blogging which has been
+sitting idle which I have cloned locally [[https://gdowding.github.io]]. 
 
-A little weird
+Org-page uses the master branch for generated files, and a source
+branch for the org-mode source files. I find this way of using
+branches a little strange, but I'm willing to work with it for now.
+
+I had some files left over from my last blogging attempt, so I moved
+them to a new branch then removed all files in master. Org-page needs
+a source branch, so I created that as well.
+
+Starting from a clean repository.
+#+BEGIN_EXAMPLE
+git branch source
+git checkout source
+#+END_EXAMPLE
 
 ** Basic customization
+
+Here is the minimal configuration. There are a couple of default
+values that include the developers link, so best to set these to
+something.
 
 #+BEGIN_EXAMPLE
 ;; Blog with org-page
 (require 'org-page)
 (setq op/repository-directory "~/git/gdowding/gdowding.github.io")
-(setq op/site-domain "http://gdowding.github.io")
+(setq op/site-domain "https://gdowding.github.io")
 (setq op/personal-github-link "https://github.com/gdowding")
-(setq op/site-main-title "In the Ocean")
+(setq op/site-main-title "Adrift")
 (setq op/site-sub-title "")
 (setq op/theme 'phaer)
 #+END_EXAMPLE
 
+Once that is all done make sure you are in the source branch, run M-X
+op/new-repository which will create an about.org file in root of the
+repository. Edit that file and commit it. Then run M-X
+op/do-publication-and-preview-site. You should see the site, click the
+About link and make sure you are happy with the results.
+
 * Usage
 
-Need to add and commit a file before it is rendered.
+Org-page takes org files from source branch and generates html files
+in master branch. In addition there are special file locations and
+headers that it uses to generated the site. The easiest way to work
+with it is to use the provided helper functions. In addition, my
+work-flow is to create a new branch for each blog post then merge to
+source when I am mostly happy with it. The reason is that I typically
+have multiple posts in progress, but want to work on them separately.
 
-** Creating a new blog post
-   op/new-post
+Here is my work-flow
 
-   This will walk through the steps of creating a new file and putting
-   it in the correct place and adding a header.
+** Create a New Branch and Check It Out
+
+#+BEGIN_EXAMPLE
+git branch new-post source
+git checkout new-post
+#+END_EXAMPLE
+
+** Create a New Post
+#+BEGIN_EXAMPLE
+op/new-post
+#+END_EXAMPLE
+
+This will walk through the steps of creating a new file and putting
+it in the correct place and adding a header.
+
+** Merge Blog Post to Source When Ready
+
+#+BEGIN_EXAMPLE
+git checkout source
+git merge new-post
+#+END_EXAMPLE
+
+** Generate Static Files
+
+#+BEGIN_EXAMPLE
+ob/do-publication
+#+END_EXAMPLE
+
+** Push to Public Site
+
+#+BEGIN_EXAMPLE
+git push
+#+END_EXAMPLE
