@@ -1,13 +1,14 @@
 #+TITLE:       New Year New Blog
 #+AUTHOR:      George Dowding
-#+EMAIL:       gdowding@sidgel.local
-#+DATE:        2016-01-02 Sat
+#+EMAIL:       pyrios@gmail.com
+#+DATE:        2016-01-03 Sun
 #+URI:         /blog/%y/%m/%d/new-year-new-blog
 #+KEYWORDS:    emacs,org,org-page
 #+TAGS:        emacs,org,org-blog
 #+LANGUAGE:    en
 #+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
 #+DESCRIPTION: Getting started on blogging for the New Year with org-page
+
 * Why blog with emacs, org and git?
 
 I mostly work with source code in emacs and git. When I take notes I
@@ -15,43 +16,13 @@ use org-mode. The times I've tried to blog in the past involved a lot
 of overhead and context switching that overhead was one of the reasons
 that prevented me from doing any blogging. There were other reasons,
 like lack of ideas or fear of sharing lame posts, but it is a new
-year, so I'm going to give it another try. 
-
-* Choices
-
-There are several choices listed
-here. http://orgmode.org/worg/org-blog-wiki.html. I am was looking for
-something simple to set up and start using that I could host on
-http://gdowding.github.io. Org-mode has a build in project feature
-that allows creating projects that can be converted to HTML
-pages. I've tried that in the past and was never happy with the output
-and didn't have time to attempt to customize it to what I wanted.
-
-Based on the descriptions, I decided to give [[https://github.com/kelvinh/org-page][org-page]] a try. It looked
-like the simplest approach and the author's site looked, more or less,
-like what I wanted. As I started working with it, I found it was using
-Git and Emacs in a way that I could easily leverage for creating blog
-posts.
-
-A couple of other options that looked interesting are
-http://plugins.getnikola.com/#orgmode and
-https://github.com/novoid/lazyblorg. Nikola looks like it has many
-more features that org-page. It is a static site generator with an
-org-mode plugin. I may have a use for it in the future if I am making
-a full web site. My main issues is that it looks like a more intensive
-set up and I would have to use the CLI to create blog posts and
-build. Lazyblog is interesting in that it attempts to make the effort
-of blogging minimal. Just tag entries with with :blog: and they will
-be converted to blog posts. It look like it is less mature than
-org-page and I decided that I do want to have some level of process to
-separate random notes from blog posts.
-
-I might give one of the other approaches a try in the future, but for
-now here is how I'm setting up and using org-page.
+year, so I'm going to give it another try.
 
 * Install org-page
 
-I [[https://github.com/cask/cask][cask]] to manage emacs packages when they are available. Otherwise, I
+For an explanation on why I chose org-page, see [[Addendum Choices]] below.
+
+I use [[https://github.com/cask/cask][cask]] to manage emacs packages when they are available. Otherwise, I
 clone the repository and install manually. The [[https://github.com/kelvinh/org-page][org-page]] github
 repository also has instructions on using melpa or manual
 installation. 
@@ -134,13 +105,39 @@ git branch new-post source
 git checkout new-post
 #+END_EXAMPLE
 
+
 ** Create a New Post
 #+BEGIN_EXAMPLE
-op/new-post
+M-X op/new-post
 #+END_EXAMPLE
 
 This will walk through the steps of creating a new file and putting
-it in the correct place and adding a header.
+it in the correct place and adding a header. There is a keywords and
+tags options. I'm not sure what the difference is. I put the same
+values for both.
+
+Since this post is not in the source branch it will not show up during
+preview. So create file local variable while it is on the topic
+branch.
+
+With the new-post.org file open,
+#+BEGIN_EXAMPLE
+M-X add-file-local-variable
+Add file-local variable: op/repository-org-branch
+Add op/repository-org-branch with value: "new-post"
+#+END_EXAMPLE
+
+This will create a commented section at the bottom of the file
+containing this file-local variable. When
+M-X op/do-publication-and-preview-site is called while editing a file on a
+topic branch the branch specified in the file will be used as the org
+source. If not specified, weird things will happen.
+
+#+BEGIN_EXAMPLE
+# Local Variables:
+# op/repository-org-branch: new-post
+# End:
+#+END_EXAMPLE
 
 ** Merge Blog Post to Source When Ready
 
@@ -149,10 +146,17 @@ git checkout source
 git merge new-post
 #+END_EXAMPLE
 
+After merging, remove the file-local variable specifying the branch.
+
+Either remove it manually or use the function:
+#+BEGIN_EXAMPLE
+M-X delete-file-local-variable
+#+END_EXAMPLE
+
 ** Generate Static Files
 
 #+BEGIN_EXAMPLE
-ob/do-publication
+M-X ob/do-publication
 #+END_EXAMPLE
 
 ** Push to Public Site
@@ -160,3 +164,51 @@ ob/do-publication
 #+BEGIN_EXAMPLE
 git push
 #+END_EXAMPLE
+
+* Conclusion
+
+Org-page is a nice, simple to use, package that allows me to blog with
+emacs and org-mode. In the coarse of a few hours I was able to get it
+set up as I was writing this blog post. There are few things that I'd
+like to change, such as, the style and having it show more of the blog
+post on the main page, but this is a work-flow I can live
+with.
+
+----------------------------------------------------------------------
+
+* Addendum Choices
+
+There are several choices listed
+here. http://orgmode.org/worg/org-blog-wiki.html. I am was looking for
+something simple to set up and start using that I could host on
+http://gdowding.github.io. Org-mode has a build in project feature
+that allows creating projects that can be converted to HTML
+pages. I've tried that in the past and was never happy with the output
+and didn't have time to attempt to customize it to what I wanted.
+
+Based on the descriptions, I decided to give [[https://github.com/kelvinh/org-page][org-page]] a try. It looked
+like the simplest approach and the author's site looked, more or less,
+like what I wanted. As I started working with it, I found it was using
+Git and Emacs in a way that I could easily leverage for creating blog
+posts.
+
+A couple of other options that looked interesting are
+http://plugins.getnikola.com/#orgmode and
+https://github.com/novoid/lazyblorg. Nikola looks like it has many
+more features that org-page. It is a static site generator with an
+org-mode plugin. I may have a use for it in the future if I am making
+a full web site. My main issues is that it looks like a more intensive
+set up and I would have to use the CLI to create blog posts and
+build. Lazyblog is interesting in that it attempts to make the effort
+of blogging minimal. Just tag entries with with :blog: and they will
+be converted to blog posts. It look like it is less mature than
+org-page and I decided that I do want to have some level of process to
+separate random notes from blog posts.
+
+I might give one of the other approaches a try in the future, but
+org-page does most of what I need for now.
+
+
+# Local Variables:
+# op/repository-org-branch: new-year
+# End:
