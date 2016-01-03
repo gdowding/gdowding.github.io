@@ -1,4 +1,7 @@
 #+TITLE: About
 
 * About George Dowding
-
+** Develops tools for performance testing and analysis.
+** Works at Nutanix in the Solutions and Performance team.
+** Worked at Netapp.
+** twitter: @gadowding
