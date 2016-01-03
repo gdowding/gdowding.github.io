@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>Untitled - In the Ocean</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="George Dowding" />
+
+  <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
+
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+</head>
+
+  <body class="container">
+<header id="header">
+  <h1 class="title"><a href="/">In the Ocean</a></h1>
+  <ul>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/tags/">Tags</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com">
+    <input type="text" class="field" name="q" id="s" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="gdowding.github.io">
+  </form>
+</header>
+
+<section id="content" role="main">
+  <h1>Untitled</h1>
+  <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Why blog with emacs org?</a></li>
+<li><a href="#orgheadline2">2. About org-page</a></li>
+<li><a href="#orgheadline3">3. Install org-page</a></li>
+<li><a href="#orgheadline6">4. Initial setup</a>
+<ul>
+<li><a href="#orgheadline4">4.1. Need source and master</a></li>
+<li><a href="#orgheadline5">4.2. Basic customization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Why blog with emacs org?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I do most of my work in emacs and prefer to do any writing in
+org-mode. It fits my way of working with source and building a
+product. I'm already taking lots of notes in emacs org-mode. I am
+hopeful (new year and all) that I can convert these to actual blogs
+and articles. Finally, since it is logargely based on elisp, it can
+all be customized. In practice, I haven't spent much time doing any
+serious elisp customization. Again, I'm hopefull that I can spend some
+time automating common programming and writing tasks.
+</p>
+
+<p>
+Also leverages git.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> About org-page</h2>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> Install org-page</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+I use a combination of git and cask to manage emacs packages. I
+usually use Cask to do the initial install which takes care of all of
+the dependencies then clone the repository in case I need to read or
+modify the code.
+</p>
+
+<pre class="example">
+(depends-on "org-page")
+</pre>
+
+<p>
+I already had a github
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> Initial setup</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">4.1</span> Need source and master</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+A little weird
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">4.2</span> Basic customization</h3>
+<div class="outline-text-3" id="text-4-2">
+<pre class="example">
+;; Blog with org-page
+(require 'org-page)
+(setq op/repository-directory "~/git/gdowding/gdowding.github.io")
+(setq op/site-domain "http://gdowding.github.io")
+(setq op/personal-github-link "https://github.com/gdowding")
+(setq op/site-main-title "In the Ocean")
+(setq op/site-sub-title "")
+(setq op/theme 'phaer)
+</pre>
+</div>
+</div>
+</div>
+
+</section>
+
+
+
+<footer id="footer">
+    Send comments, critique and suggestions to <a href="mailto:gdowding &lt;at&gt; sidgel &lt;dot&gt; local">George Dowding</a>.
+    Powered by <a href="https://github.com/kelvinh/org-page">org-page</a>
+</footer>
+
+  </body>
+</html>

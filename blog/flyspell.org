@@ -1,0 +1,76 @@
+#+TITLE:       Flyspell
+#+AUTHOR:      George Dowding
+#+EMAIL:       gdowding@sidgel.local
+#+DATE:        2016-01-03 Sun
+#+URI:         /blog/%y/%m/%d/flyspell
+#+KEYWORDS:    emacs,flyspell,spellcheck
+#+TAGS:        emacs,spellcheck,flyspell
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Setting up flyspell in emacs
+
+* Flyspell
+
+Spellchecking and auto-correction is ubiquitous. Flyspell is a package
+for emacs that checks spelling interactively. This blog describes how
+I set it up and use it with emacs.
+
+Flyspell is included with the version of emacs I'm using which is
+24.5.1. For ad-hoc usage I can turn it on with the command M-x
+flyspell-mode, but I want to add it by default to org-mode.
+
+** Setup
+I've added this to my init.el file. Whitout restarting emacs, I can
+test it by placing the cursor at the end of sexp and executing cx-ce
+'eval-last-sexp'.
+
+#+BEGIN_EXAMPLE
+(add-hook 'org-mode-hook 'flyspell-mode)
+#+END_EXAMPLE
+
+I also want comments in Python to be checked.
+
+#+BEGIN_EXAMPLE
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
+#+END_EXAMPLE
+
+
+* Usage
+
+Flyspell runs in the background. When it detects a misspelled word it
+highlights it the word. When the cursor is on the word, M-TAB will
+"correct" the word. It also detects repeated words.
+
+** Suggestions
+
+M-TAB corrects the word with the most likely spelling, but it isn't
+always correct. Repeteadly hitting M-TAB cycles through the
+suggestions. 
+
+* Error Highlighting
+
+The default error highlighting, red with red underline, is a little
+too obtrusive. I'd like to tone it down a little.
+
+* References
+
+Flyspell page http://www-sop.inria.fr/members/Manuel.Serrano/flyspell/flyspell.html
+
+More configuration examples http://www.emacswiki.org/emacs/FlySpell
+
+* Debugging 
+
+Flyspell wasn't wasn't working initially. A simple debugging step is
+to see what is in org-mode-hook by typeing it out, then runing MX
+eval-print-last-sexp.
+
+The line on the bottom is the first print which shows that flyspell
+has not been added to the hook. After fixing and re-executing the
+add-hook, the print on top shows that it has been added.
+
+#+BEGIN_EXAMPLE
+org-mode-hook
+(flyspell-mode #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-show-block-all append local] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-babel-show-result-all append local] 5] org-babel-result-hide-spec org-babel-hide-all-hashes)
+
+(#[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-show-block-all append local] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-babel-show-result-all append local] 5] org-babel-result-hide-spec org-babel-hide-all-hashes)
+#+END_EXAMPLE

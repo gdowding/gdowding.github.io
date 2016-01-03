@@ -1,0 +1,7 @@
+* DONE Fix github link
+* TODO Fix style
+* DONE Fix broken links
+** Images, Style
+** DONE Fix two Tags links
+* TODO fix email
+* TODO flyspell

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>New Year New Blog - In the Ocean</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="George Dowding" />
+  <meta name="description" content="Getting started on blogging for the New Year with org-page" />
+  <meta name="keywords" content="emacs,org,org-page" />
+
+  <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
+
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+</head>
+
+  <body class="container">
+<header id="header">
+  <h1 class="title"><a href="/">In the Ocean</a></h1>
+  <ul>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/tags/">Tags</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com">
+    <input type="text" class="field" name="q" id="s" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="gdowding.github.io">
+  </form>
+</header>
+
+<section id="content" role="main">
+  <h1>New Year New Blog</h1>
+  
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Why blog with emacs, org and git?</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+I mostly work with source code in emacs and git. When I take notes I
+use org-mode. The times I've tried to blog in the past involved a lot
+of overhead and context switching that overhead was one of the reasons
+that prevented me from doing any blogging. There were other reasons,
+like lack of ideas or fear of sharing lame posts, but it is a new
+year, so I'm going to give it another try.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Install org-page</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+For an explanation on why I chose org-page, see <a href="#orgheadline2">Addendum Choices</a> below.
+</p>
+
+<p>
+I use <a href="https://github.com/cask/cask">cask</a> to manage emacs packages when they are available. Otherwise, I
+clone the repository and install manually. The <a href="https://github.com/kelvinh/org-page">org-page</a> github
+repository also has instructions on using melpa or manual
+installation. 
+</p>
+
+<p>
+In ~/.emacs.d/Cask
+</p>
+<pre class="example">
+(depends-on "org-page")
+</pre>
+
+<p>
+Then run cask from the CLI. This will install org-page and all of its
+dependencies.
+</p>
+<pre class="example">
+cd ~/.emacs.d
+cask
+</pre>
+
+<p>
+Finally in ~/.emacs.d/init.el
+</p>
+<pre class="example">
+(require 'org-page)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Initial setup</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+<p>
+I already had a site set up on github for blogging which has been
+sitting idle which I have cloned locally <a href="https://gdowding.github.io/">https://gdowding.github.io/</a>. 
+</p>
+
+<p>
+Org-page uses the master branch for generated files, and a source
+branch for the org-mode source files. I find this way of using
+branches a little strange, but I'm willing to work with it for now.
+</p>
+
+<p>
+I had some files left over from my last blogging attempt, so I moved
+them to a new branch then removed all files in master. Org-page needs
+a source branch, so I created that as well.
+</p>
+
+<p>
+Starting from a clean repository.
+</p>
+<pre class="example">
+git branch source
+git checkout source
+</pre>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Basic customization</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+Here is the minimal configuration. There are a couple of default
+values that include the developers link, so best to set these to
+something.
+</p>
+
+<pre class="example">
+;; Blog with org-page
+(require 'org-page)
+(setq op/repository-directory "~/git/gdowding/gdowding.github.io")
+(setq op/site-domain "https://gdowding.github.io")
+(setq op/personal-github-link "https://github.com/gdowding")
+(setq op/site-main-title "Adrift")
+(setq op/site-sub-title "")
+(setq op/theme 'phaer)
+</pre>
+
+<p>
+Once that is all done make sure you are in the source branch, run M-X
+op/new-repository which will create an about.org file in root of the
+repository. Edit that file and commit it. Then run M-X
+op/do-publication-and-preview-site. You should see the site, click the
+About link and make sure you are happy with the results.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Usage</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+<p>
+Org-page takes org files from source branch and generates html files
+in master branch. In addition there are special file locations and
+headers that it uses to generated the site. The easiest way to work
+with it is to use the provided helper functions. In addition, my
+work-flow is to create a new branch for each blog post then merge to
+source when I am mostly happy with it. The reason is that I typically
+have multiple posts in progress, but want to work on them separately.
+</p>
+
+<p>
+Here is my work-flow
+</p>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">Create a New Branch and Check It Out</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+<pre class="example">
+git branch new-post source
+git checkout new-post
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">Create a New Post</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+<pre class="example">
+M-X op/new-post
+</pre>
+
+<p>
+This will walk through the steps of creating a new file and putting
+it in the correct place and adding a header. There is a keywords and
+tags options. I'm not sure what the difference is. I put the same
+values for both.
+</p>
+
+<p>
+Since this post is not in the source branch it will not show up during
+preview. So create file local variable while it is on the topic
+branch.
+</p>
+
+<p>
+With the new-post.org file open,
+</p>
+<pre class="example">
+M-X add-file-local-variable
+Add file-local variable: op/repository-org-branch
+Add op/repository-org-branch with value: "new-post"
+</pre>
+
+<p>
+This will create a commented section at the bottom of the file
+containing this file-local variable. When
+M-X op/do-publication-and-preview-site is called while editing a file on a
+topic branch the branch specified in the file will be used as the org
+source. If not specified, weird things will happen.
+</p>
+
+<pre class="example">
+# Local Variables:
+# op/repository-org-branch: new-post
+# End:
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Merge Blog Post to Source When Ready</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<pre class="example">
+git checkout source
+git merge new-post
+</pre>
+
+<p>
+After merging, remove the file-local variable specifying the branch.
+</p>
+
+<p>
+Either remove it manually or use the function:
+</p>
+<pre class="example">
+M-X delete-file-local-variable
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Generate Static Files</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<pre class="example">
+M-X ob/do-publication
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11">Push to Public Site</h3>
+<div class="outline-text-3" id="text-orgheadline11">
+<pre class="example">
+git push
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12">Conclusion</h2>
+<div class="outline-text-2" id="text-orgheadline12">
+<p>
+Org-page is a nice, simple to use, package that allows me to blog with
+emacs and org-mode. In the coarse of a few hours I was able to get it
+set up as I was writing this blog post. There are few things that I'd
+like to change, such as, the style and having it show more of the blog
+post on the main page, but this is a work-flow I can live
+with.
+</p>
+
+<hr  />
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Addendum Choices</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+There are several choices listed
+here. <a href="http://orgmode.org/worg/org-blog-wiki.html">http://orgmode.org/worg/org-blog-wiki.html</a>. I am was looking for
+something simple to set up and start using that I could host on
+<a href="http://gdowding.github.io/">http://gdowding.github.io/</a>. Org-mode has a build in project feature
+that allows creating projects that can be converted to HTML
+pages. I've tried that in the past and was never happy with the output
+and didn't have time to attempt to customize it to what I wanted.
+</p>
+
+<p>
+Based on the descriptions, I decided to give <a href="https://github.com/kelvinh/org-page">org-page</a> a try. It looked
+like the simplest approach and the author's site looked, more or less,
+like what I wanted. As I started working with it, I found it was using
+Git and Emacs in a way that I could easily leverage for creating blog
+posts.
+</p>
+
+<p>
+A couple of other options that looked interesting are
+<a href="http://plugins.getnikola.com/#orgmode">http://plugins.getnikola.com/#orgmode</a> and
+<a href="https://github.com/novoid/lazyblorg">https://github.com/novoid/lazyblorg</a>. Nikola looks like it has many
+more features that org-page. It is a static site generator with an
+org-mode plugin. I may have a use for it in the future if I am making
+a full web site. My main issues is that it looks like a more intensive
+set up and I would have to use the CLI to create blog posts and
+build. Lazyblog is interesting in that it attempts to make the effort
+of blogging minimal. Just tag entries with with :blog: and they will
+be converted to blog posts. It look like it is less mature than
+org-page and I decided that I do want to have some level of process to
+separate random notes from blog posts.
+</p>
+
+<p>
+I might give one of the other approaches a try in the future, but for
+now here is how I'm setting up and using org-page.
+</p>
+</div>
+</div>
+
+</section>
+
+
+
+<footer id="footer">
+    Send comments, critique and suggestions to <a href="mailto:gdowding &lt;at&gt; sidgel &lt;dot&gt; local">George Dowding</a>.
+    Powered by <a href="https://github.com/kelvinh/org-page">org-page</a>
+</footer>
+
+  </body>
+</html>
