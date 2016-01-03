@@ -1,4 +1,4 @@
-#+TITLE:       About
+#+TITLE:       About George Dowding
 #+AUTHOR:      George Dowding
 #+EMAIL:       pyrios@gmail.com
 #+DATE:        2016-01-03 Sun
@@ -11,10 +11,8 @@
 
 + Develops tools for performance testing and analysis.
 + Works at Nutanix in the Solutions and Performance team.
-+ Worked at Netapp.
 + twitter: @gadowding.
 
-
 # Local Variables:
-# op/repository-org-branch: "source"
-# En
+# op/repository-org-branch: "about"
+# End:
