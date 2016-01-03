@@ -1,12 +1,20 @@
-#+TITLE: About
+#+TITLE:       About
+#+AUTHOR:      George Dowding
+#+EMAIL:       pyrios@gmail.com
+#+DATE:        2016-01-03 Sun
+#+URI:         about
+#+KEYWORDS:
+#+TAGS:
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: About
 
-* About George Dowding
-** Develops tools for performance testing and analysis.
-** Works at Nutanix in the Solutions and Performance team.
-** Worked at Netapp.
-** twitter: @gadowding
++ Develops tools for performance testing and analysis.
++ Works at Nutanix in the Solutions and Performance team.
++ Worked at Netapp.
++ twitter: @gadowding.
 
 
 # Local Variables:
 # op/repository-org-branch: "source"
-# End:
+# En
