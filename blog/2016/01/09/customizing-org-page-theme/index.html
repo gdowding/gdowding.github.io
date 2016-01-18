@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <title>About George Dowding - Working Title</title>
+  <title>Customizing org-page Theme - Something Interesting</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="George Dowding" />
-  <meta name="description" content="About" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="Customizing the theme for org-page" />
+  <meta name="keywords" content="emacs,blog,org-mode,org-page" />
 
 
   <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
@@ -43,14 +43,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/index.html">Working Title</a>
+      <a class="navbar-brand" href="/index.html">Something Interesting</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/blog/">Blog</a></li>
-        <li><a href="/media/">Media</a></li>
-        <li><a href="/tags/">Tags</a></li>
         <li><a href="/tags/">Tags</a></li>
         <li><a href="/about/">About</a></li>
         <!--
@@ -75,7 +73,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="site-heading">
-          <h1>Working Title</h1>
+          <h1>Something Interesting</h1>
           <hr class="small">
           <span class="subheading"></span>
         </div>
@@ -89,12 +87,92 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <h1>About George Dowding</h1>
-          <ul class="org-ul">
-<li>Develops tools for performance testing and analysis.</li>
-<li>Works at Nutanix in the Solutions and Performance team.</li>
-<li>twitter: @gadowding.</li>
+          <h1>Customizing org-page Theme</h1>
+          <p>
+I wanted to make a more modern looking blog, since org-page. This post
+describes how to configure org-page with a custom theme.
+</p>
+
+<p>
+I found a nice looking <a href="http://startbootstrap.com/template-overviews/clean-blog/">clean blog</a> from Start Bootstrap. It is hosted
+on github, so the first step was to fork on github then clone to a
+local repository.
+</p>
+
+<p>
+The provided thems are organized with two sub dirs
+</p>
+
+<ul class="org-ul">
+<li>resources
+<ul class="org-ul">
+<li>css</li>
+<li>fonts</li>
+<li>img</li>
+<li>js</li>
+</ul></li>
+<li>templates</li>
 </ul>
+
+<p>
+The first step was to create a directory for the new them, then copy
+all of the resources from startboostrap-clean-blog to the resources
+sub directory. The next step was to copy one of the existing templates
+directories.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">configure org-page to use new theme</h2>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">fixup templates</h2>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">use html mode for .mustache templates</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">use provided html examples and decompose into templates used by org-page</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">container.mustache</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+Document structure and contains other templates.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">header.mustache</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+This is the header of the html document.
+</p>
+
+<p>
+Add stylesheets, and fonts and other bootstrap boilerplate.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">nav.mustache</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<p>
+This is the nav bar.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">index.mustache</h4>
+</div>
+</div>
+</div>
 
         </div>
       </div>
