@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <title>About George Dowding - Working Title</title>
+  <title>Open source password management - Working Title</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="George Dowding" />
-  <meta name="description" content="About" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="Open source password management" />
+  <meta name="keywords" content="password, security" />
 
 
   <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
@@ -87,12 +87,78 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <h1>About George Dowding</h1>
-          <ul class="org-ul">
-<li>Develops tools for performance testing and analysis.</li>
-<li>Works at Nutanix in the Solutions and Performance team.</li>
-<li>twitter: @gadowding.</li>
+          <h1>Open source password management</h1>
+          
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Background</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+This post is about using open source password management tools. I had
+been using the Keychain App built into OS X, which was convenient and
+worked when I had an iPhone, but since switching to an Android phone,
+I had to find something that was not Apple exclusive. My first attempt
+was to look for an Android app that also had a OS X
+implementation. The app allowed me to sync my keys using Dropbox and
+was working well until the trial period ended for the Android
+app. After the trial period, synchronization stopped working which
+made the product unusable for me. That prompted me to look for an open
+source implementation that allowed me to have better control over my
+passwords. What I found involves some more manual steps, but gives me
+more control and doesn't store any data in the cloud.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Solution</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+What I found was <a href="http://www.passwordstore.org">pass, the standard unix password manager</a>. Pass is a
+shell script that organizes stores passwords using directory structure
+for organization and <a href="https://www.gnupg.org/index.html">GNU privacy guard</a> to encrypt the data. Pass can
+optionally configure the top level password directory as a git repository
+that can then be used to synchronize between devices. There several
+interfaces including an Android app and emacs integration.
+</p>
+
+<p>
+Setting up on OS X was straight forward. I am using <a href="http://brew.sh">homebrew</a> for
+package management, so that was a simple command <code>brew install pass</code>
+which installed pass and its dependencies. For Linux VMs at work, I
+had to install pass from the git repository, but supporting
+dependencies were available from the system's package management system.
+</p>
+
+<p>
+The Android setup took a little more work. It involved installing
+<a href="https://github.com/zeapo/Android-Password-Store">Android-Password-Store</a> for password management and <a href="https://github.com/open-keychain/open-keychain">open-keychain</a> which
+provides OpenPGP support. To get things working, I had to transfer the
+pgp key to access the passwords, and an ssh key which could be used to
+synchronize between my phone and main computer. Transferring the files to
+Android and finding them took most of the time. Android-Password-Store
+had decent instructions for setting things up, but leaves out some
+details like how to unlock an encrypted pgp key.
+</p>
+
+<p>
+Now that this is set up, I can synchronize my phone and work computer
+manually using git. I had to create a bare repository that I could
+push changes to and having a single point for synchronization. This is
+mainly a command line solution.
+</p>
+
+<ul class="org-ul">
+<li>My password data is not stored in the cloud (although that is an option).</li>
+<li>I don't need a memorable/weak password to bootstrap my
+keychain. Having a good password for iCloud was problematic when
+trying to enter it on an an iPhone or iPad.</li>
+<li>I can use pass in software that requires authentication, for example
+I use scripts to manage JIRA issues and can use pass to allow
+those scripts to have secure access to the required passwords (once
+I have gpg session set up).</li>
 </ul>
+</div>
+</div>
 
         </div>
       </div>
