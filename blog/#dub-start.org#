@@ -1,0 +1,35 @@
+#+TITLE:       Starting Dub in Rust
+#+AUTHOR:      George Dowding
+#+EMAIL:       gdowding@sidgel.local
+#+DATE:        2016-02-21 Sun
+#+URI:         /blog/%y/%m/%d/starting-dub-in-rust
+#+KEYWORDS:    benchmark,rust
+#+TAGS:        benchmark,rust
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Starting a project in rust.
+* Creating a new project
+
+Wanted to take advantage of built in packaging provided with rust via cargo. 
+I had already started taking notes, so I had an existing
+directory. Since cargo can create a new project, my initial attempt
+was to use cargo to create a project in that directory.
+
+- In the repository
+
+#+BEGIN_EXAMPLE
+cargo new --bin --name dub --vcs git .
+destination `/Users/gdowding/git/gdowding/dub/.` already exists
+#+END_EXAMPLE
+
+- One directory up
+#+BEGIN_EXAMPLE
+cargo new --bin --name dub --vcs git dub
+destination `/Users/gdowding/git/gdowding/dub` already exists
+#+END_EXAMPLE
+
+I guess this makes sense given rust's emphasis on safety. So, I'll
+create in a new directory then merge the data.
+#+BEGIN_EXAMPLE
+cargo new --vcs git --bin --name dub cargo-dub
+#+END_EXAMPLE

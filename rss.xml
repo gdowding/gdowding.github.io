@@ -4,10 +4,17 @@
     <title>Working Title</title>
     <link>http://gdowding.github.io</link>
     <description></description>
-    <pubDate>Sun, 21 Feb 2016 12:30:55 EST</pubDate>
-    <lastBuildDate>Sun, 21 Feb 2016 12:30:55 EST</lastBuildDate>
+    <pubDate>Sun, 12 Jun 2016 11:38:30 EDT</pubDate>
+    <lastBuildDate>Sun, 12 Jun 2016 11:38:30 EDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title>Setting up for Haskell Development</title>
+      <link>http://gdowding.github.io/blog/2016/06/12/setting-up-for-haskell-development</link>
+      <description><![CDATA[Setting up OSX for Haskell development.]]></description>
+      <pubDate>2016-06-12</pubDate>
+      <guid>http://gdowding.github.io/blog/2016/06/12/setting-up-for-haskell-development</guid>
+    </item>
     <item>
       <title>Open source password management</title>
       <link>http://gdowding.github.io/blog/2016/02/07/passwords</link>
